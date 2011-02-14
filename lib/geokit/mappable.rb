@@ -432,7 +432,7 @@ module Geokit
     end
 
     def serialization_attributes
-      [:street_address, :city, :state, :zip, :country_code, :country, :full_address, :district, :province, :success, :provider, :precision, :suggested_bounds, :street_number, :street_name, :accuracy]
+      [:lat, :lng, :street_address, :city, :state, :zip, :country_code, :country, :full_address, :district, :province, :success, :provider, :precision, :suggested_bounds, :street_number, :street_name, :accuracy]
     end
 
     def as_json
