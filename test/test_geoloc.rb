@@ -68,5 +68,29 @@ class GeoLocTest < Test::Unit::TestCase #:nodoc: all
       "--- !ruby/object:Geokit::GeoLoc \ncity: San Francisco\ncountry_code: US\nfull_address: \nlat: \nlng: \nprecision: unknown\nprovince: \nstate: CA\nstreet_address: \nsuccess: false\nzip: \"94105\"\n", 
       @loc.to_yaml)
   end
+
+  def test_as_json
+    city = 'Palo Alto'
+    state = 'CA'
+    zip = '94301'
+    country_code = 'US'
+    sw_lat = 34.0
+    sw_lon = -122.0
+    ne_lat = 35.0
+    ne_lon = -121.0
+
+    @loc.city = city
+    @loc.state = state
+    @loc.zip = zip
+    @loc.country_code = country_code
+    @loc.suggested_bounds = Geokit::Bounds.normalize([[sw_lat, sw_lon], [ne_lat, ne_lon]])
+    result = @loc.as_json
+
+    assert_equal city, result[:city]
+    assert_equal state, result[:state]
+    assert_equal zip, result[:zip]
+    assert_equal country_code, result[:country_code]
+    assert_equal [[sw_lat, sw_lon], [ne_lat, ne_lon]], result[:suggested_bounds]
+  end
   
 end

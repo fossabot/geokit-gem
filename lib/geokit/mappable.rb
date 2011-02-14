@@ -430,6 +430,24 @@ module Geokit
     def to_s
       "Provider: #{provider}\nStreet: #{street_address}\nCity: #{city}\nState: #{state}\nZip: #{zip}\nLatitude: #{lat}\nLongitude: #{lng}\nCountry: #{country_code}\nSuccess: #{success}"
     end
+
+    def serialization_attributes
+      [:street_address, :city, :state, :zip, :country_code, :country, :full_address, :district, :province, :success, :provider, :precision, :suggested_bounds, :street_number, :street_name, :accuracy]
+    end
+
+    def as_json
+      result = {}
+      serialization_attributes.inject(result) do |r, name|
+        value = self.send(name)
+        if value.respond_to?(:as_json)
+          r[name] = value.as_json
+        else
+          r[name] = value
+        end
+        r
+      end
+      result
+    end
   end
   
   # Bounds represents a rectangular bounds, defined by the SW and NE corners
@@ -490,6 +508,10 @@ module Geokit
       lat_span = (@ne.lat - @sw.lat).abs
       lng_span = (crosses_meridian? ? 360 + @ne.lng - @sw.lng : @ne.lng - @sw.lng).abs
       Geokit::LatLng.new(lat_span, lng_span)
+    end
+
+    def as_json
+      self.to_a
     end
     
     class <<self
