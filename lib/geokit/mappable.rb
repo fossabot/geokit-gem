@@ -210,7 +210,7 @@ module Geokit
   class LatLng 
     include Mappable
 
-    attr_accessor :lat, :lng
+    attr_reader :lat, :lng
 
     # Accepts latitude and longitude or instantiates an empty instance
     # if lat and lng are not provided. Converted to floats if provided
@@ -342,13 +342,13 @@ module Geokit
 
     # Location attributes.  Full address is a concatenation of all values.  For example:
     # 100 Spear St, San Francisco, CA, 94101, US
-    attr_accessor :street_address, :city, :state, :zip, :country_code, :country, :full_address, :all, :district, :province
+    attr_accessor :state, :zip, :country_code, :country, :all, :district, :province
+    attr_reader :street_address, :city
+    attr_writer :full_address
     # Attributes set upon return from geocoding.  Success will be true for successful
     # geocode lookups.  The provider will be set to the name of the providing geocoder.
     # Finally, precision is an indicator of the accuracy of the geocoding.
     attr_accessor :success, :provider, :precision, :suggested_bounds
-    # Street number and street name are extracted from the street address attribute.
-    attr_reader :street_number, :street_name
     # accuracy is set for Yahoo and Google geocoders, it is a numeric value of the 
     # precision. see http://code.google.com/apis/maps/documentation/geocoding/#GeocodingAccuracy
     attr_accessor :accuracy
