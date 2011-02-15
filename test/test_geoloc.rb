@@ -11,7 +11,7 @@ class GeoLocTest < Test::Unit::TestCase #:nodoc: all
     street_address = '123 Address St.'
     city = 'Palo Alto'
     suggested_bounds = [[35,-122],[34,-121]]
-    loc_hash = {:street_address => street_address, :city => city, :suggested_bounds => suggested_bounds}
+    loc_hash = {:street_address => street_address, :city => city, 'suggested_bounds' => suggested_bounds}
     loc = Geokit::GeoLoc.new(loc_hash)
     assert_equal street_address, loc.street_address
     assert_equal city, loc.city

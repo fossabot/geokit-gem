@@ -355,6 +355,9 @@ module Geokit
 
     # Constructor expects a hash of symbols to correspond with attributes.
     def initialize(h={})
+      # Symbolize the keys of the hash
+      h.each_key{|k| h[k.to_sym] = h.delete(k)}
+      
       @all = [self]
       
       @street_address=h[:street_address] 
