@@ -7,6 +7,21 @@ class GeoLocTest < Test::Unit::TestCase #:nodoc: all
     @loc = Geokit::GeoLoc.new
   end
   
+  def test_initialize_with_hash
+    street_address = '123 Address St.'
+    city = 'Palo Alto'
+    suggested_bounds = [[35,-122],[34,-121]]
+    loc_hash = {:street_address => street_address, :city => city, :suggested_bounds => suggested_bounds}
+    loc = Geokit::GeoLoc.new(loc_hash)
+    assert_equal street_address, loc.street_address
+    assert_equal city, loc.city
+    assert_equal suggested_bounds[0][0], loc.suggested_bounds.sw.lat
+    assert_equal suggested_bounds[0][1], loc.suggested_bounds.sw.lng
+    assert_equal suggested_bounds[1][0], loc.suggested_bounds.ne.lat
+    assert_equal suggested_bounds[1][1], loc.suggested_bounds.ne.lng
+  end
+    
+  
   def test_is_us
     assert !@loc.is_us?
     @loc.country_code = 'US'
@@ -65,7 +80,7 @@ class GeoLocTest < Test::Unit::TestCase #:nodoc: all
     @loc.zip = '94105'
     @loc.country_code = 'US'
     assert_equal( 
-      "--- !ruby/object:Geokit::GeoLoc \ncity: San Francisco\ncountry_code: US\nfull_address: \nlat: \nlng: \nprecision: unknown\nprovince: \nstate: CA\nstreet_address: \nsuccess: false\nzip: \"94105\"\n", 
+      "--- !ruby/object:Geokit::GeoLoc \naccuracy: \ncity: San Francisco\ncountry: \ncountry_code: US\ndistrict: \nfull_address: \nlat: \nlng: \nprecision: unknown\nprovince: \nstate: CA\nstreet_address: \nsuccess: false\nzip: \"94105\"\n",
       @loc.to_yaml)
   end
 

@@ -366,6 +366,12 @@ module Geokit
       @success=false
       @precision='unknown'
       @full_address=nil
+
+      self.country=h[:country]
+      self.district=h[:district]
+      self.suggested_bounds=Bounds.normalize(h[:suggested_bounds]) if h[:suggested_bounds]
+      self.accuracy=h[:accuracy]
+      
       super(h[:lat],h[:lng])
     end
 
