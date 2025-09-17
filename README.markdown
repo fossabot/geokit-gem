@@ -1,4 +1,6 @@
 ## GEOKIT GEM DESCRIPTION
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Furbanairship%2Fgeokit-gem.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Furbanairship%2Fgeokit-gem?ref=badge_shield)
+
 
 The Geokit gem provides:
 
@@ -271,3 +273,6 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Furbanairship%2Fgeokit-gem.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Furbanairship%2Fgeokit-gem?ref=badge_large)
